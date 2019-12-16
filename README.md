@@ -51,13 +51,13 @@ $ epmd -daemon
 ```
 
 These were good resources helpful to understanding Paxos
-
 1) [Paxos made simple - the morning paper](https://blog.acolyer.org/2015/03/04/paxos-made-simple/)
 2) [Understanding Paxos - CS Rutgers](https://www.cs.rutgers.edu/~pxk/417/notes/paxos.html)
-3) [L9 Paxos Simplified](https://www.youtube.com/watch?v=SRsK-ZXTeZ0)
-4) [Consensus algorithms, Paxos and Raft](https://www.youtube.com/watch?v=fcFqFfsAlSQ)
-5) [Paxos lecture - Raft User Study](https://www.youtube.com/watch?v=JEpsBg0AO6o)
-(Note on 5 - The algorithmic details (abort if receive a single promise decline, and using >= vs == on phase 2 proposal id checks) are 
+3) [Consensus Protocols: Paxos](https://www.the-paper-trail.org/post/2009-02-03-consensus-protocols-paxos/)
+4) [L9 Paxos Simplified](https://www.youtube.com/watch?v=SRsK-ZXTeZ0)
+5) [Consensus algorithms, Paxos and Raft](https://www.youtube.com/watch?v=fcFqFfsAlSQ)
+6) [Paxos lecture - Raft User Study](https://www.youtube.com/watch?v=JEpsBg0AO6o)
+(Note on 6 - The algorithmic details (abort if receive a single promise decline, and using >= vs == on phase 2 proposal id checks) are 
 different from other resources, however the error cases were well described)
 
 Below are some unit tests
