@@ -27,10 +27,10 @@ $ iex --name paxos1@127.0.0.1 -S mix
 $ iex --name paxos2@127.0.0.1 -S mix
 $ iex --name paxos3@127.0.0.1 -S mix
 
-Then in one of the windows type
+# Then in one of the windows type
 $ iex(paxos1@127.0.0.1)2> Leader.start("pizza2")
 
-And you may see something like this
+# And you may see something like this
 {:ok,
  [
    nodes: [:"paxos1@127.0.0.1", :"paxos2@127.0.0.1", :"paxos3@127.0.0.1"],
@@ -60,7 +60,7 @@ Below are some unit tests
 
 ```elixir
 
-    test "single proposer working with set of acceptors, majority of which crash and then later self-heal", %{nodes: nodes} do
+    test "single proposer, majority of acceptors crash and then later self-heal", %{nodes: nodes} do
       [n1, n2, n3] = nodes
 
       # Partitioning n2 from n1 and n3
@@ -89,7 +89,9 @@ Below are some unit tests
               ]}
       = Leader.start("pizza2")
     end
+```
 
+```elixir
 
   # Illustrate the algorithm under dueling proposers who are able to cut the other off from a commit/accept
   # based on whether that proposer was able to get promises and the initial majority of accepts
@@ -105,7 +107,7 @@ Below are some unit tests
   describe "Two asynchronous proposers trying two proposal values in potentially overlapping rounds" do
     #@describetag :skip
 
-    test "2a - first proposer value pizza is accepted in both rounds (proposers don't overlap)", %{nodes: nodes} do
+    test "2a - first proposer value pizza is accepted in both rounds", %{nodes: nodes} do
       values = ["pizza", "hamburger"]
       delays = [10, 124]
 
@@ -132,7 +134,7 @@ Below are some unit tests
       assert uid1 < uid2
     end
 
-    test "2b - second proposer value hamburger is accepted in second round, and the first round is declined", %{nodes: nodes} do
+    test "2b - second proposer value hamburger is accepted and the first round is declined", %{nodes: nodes} do
       values = ["pizza", "hamburger"]
       delays = [0, 40]
 
