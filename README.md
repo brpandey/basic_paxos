@@ -96,8 +96,8 @@ Below are some unit tests
 
 ```elixir
 
-  # Illustrate the algorithm under dueling proposers who are able to cut the other off from a commit/accept
-  # based on whether that proposer was able to get promises and the initial majority of accepts
+  # Illustrates the algorithm under dueling proposers who are able to potentially 
+  # block older proposals from a commit/accept
 
   # By tweaking the start times of the proposers we can create these conditions
   # Below we are using 3 nodes (which is the minimum quorum) to Proposer values:
