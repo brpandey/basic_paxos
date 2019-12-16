@@ -9,10 +9,10 @@ The learner agent has been omitted for the sake of simplicity, but a leader agen
 The coordinated actions of proposers and acceptors results in 2-phases to achieve consensus: Prepare-Promise, Commit(Accept)-Accepted
 
 Prepare-Promise 
-![alt text](https://raw.githubusercontent.com/brpandey/basic-paxos/master/priv/images/adrian-colyer-paxos-prepare.jpg)
+![Prepare-Promise](https://raw.githubusercontent.com/brpandey/basic-paxos/master/priv/images/adrian-colyer-paxos-prepare.jpg)
 
 Commit(Accept)-Accepted
-![alt text](https://raw.githubusercontent.com/brpandey/basic-paxos/master/priv/images/adrian-colyer-paxos-accept.jpg)
+![Commit-Accepted](https://raw.githubusercontent.com/brpandey/basic-paxos/master/priv/images/adrian-colyer-paxos-accept.jpg)
 
 The basic safety requirements for consensus as described in [Paxos Made Simple](https://lamport.azurewebsites.net/pubs/paxos-simple.pdf) by Leslie Lamport 
 1) Only a value that has been proposed may be chosen
