@@ -4,11 +4,11 @@ defmodule Paxos.Proposer do
 
   In the prepare phase it selects a new distinct proposal number n and sends it
   to all acceptors with the intent of a) securing a majority of promises not to accept a proposal
-  numbered less than n and b) learning the highest accepted proposal so far from the acceptors.
+  numbered less than n and b) learning the highest accepted proposal value so far from the acceptors.
 
   In the commit/accept phase it uses the consensus value v learned from the majority of promises
-  received to then issue a proposal with number n and value v (or perhaps its own if non provided)
-  to all acceptors
+  received to then issue a specific proposal with number n and value v (or perhaps its own if non provided)
+  to all acceptors.  
   """
 
   require Logger

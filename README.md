@@ -3,21 +3,24 @@
 [Paxos](https://lamport.azurewebsites.net/pubs/paxos-simple.pdf) is an algorithm to gain consensus in a distributed system.
 
 
-The three roles are performed by three classes of agents: proposers, acceptors, and learners.
+The three roles are performed by "three classes of agents": proposers, acceptors, and learners.
 The learner agent has been omitted for the sake of simplicity, but a leader agent has been added.
 
-The coordinated actions of proposers and acceptors results in 2-phases to achieve consensus: Prepare-Promise, Commit(Accept)-Accepted
+The coordinated actions of proposers and acceptors results in 2-phases to achieve consensus: 
 
-Prepare-Promise 
+Phase 1) Prepare-Promise 
 ![Prepare-Promise](/priv/images/adrian-colyer-paxos-prepare.jpg)
 
-Commit(Accept)-Accepted
+Phase 2) Commit(Accept)-Accepted
 ![Commit-Accepted](/priv/images/adrian-colyer-paxos-accept.jpg)
 
 The basic safety requirements for consensus as described in [Paxos Made Simple](https://lamport.azurewebsites.net/pubs/paxos-simple.pdf) by Leslie Lamport 
 1) Only a value that has been proposed may be chosen
 2) Only a single value is chosen, and
 3) A process never learns that a value has been chosen unless it actually has been
+
+Paxos is similiar to 2PC yet it doesn't need responses from all the nodes just a majority and
+uses monotonic ordering of proposals to be able to block older proposals that have not completed
 
 Note: Not fault tolerant yet, as the ids, highest promises or accepted values to disk are not persisted.
 
@@ -134,7 +137,7 @@ Below are some unit tests
       assert uid1 < uid2
     end
 
-    test "2b - second proposer value hamburger is accepted and the first round is declined", %{nodes: nodes} do
+    test "2b - second proposer value hamburger is accepted, first round is declined", %{nodes: nodes} do
       values = ["pizza", "hamburger"]
       delays = [0, 40]
 
@@ -189,5 +192,5 @@ Below are some unit tests
 ```
 
 
-Thank you, 
+Thanks! 
 Bibek
