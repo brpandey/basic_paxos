@@ -32,4 +32,4 @@ use Mix.Config
 # Prefix must match the names of the node list below it
 
 config :logger,
-  level: :info
+  level: :warn

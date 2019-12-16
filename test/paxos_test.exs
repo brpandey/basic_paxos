@@ -1,8 +1,7 @@
 defmodule PaxosTest do
   use ExUnit.Case
 
-  alias Paxos.{Leader}
-  import Paxos.TestHelper
+  alias Paxos.{Helper, Leader}
   require Logger
 
   setup_all do
@@ -69,8 +68,7 @@ defmodule PaxosTest do
                 round: [{_uid, "paxos2@127.0.0.1"}],
                 value: ["pizza2"],
                 declines: []
-              ]} =
-               Leader.start("pizza2")
+              ]} = Leader.start("pizza2")
     end
 
     @tag case_key: :medium
@@ -188,7 +186,7 @@ defmodule PaxosTest do
                  value: ["pizza"],
                  declines: []
                ]
-             ] = start_async_proposers(nodes, values, delays)
+             ] = Helper.start_async_proposers(nodes, values, delays)
 
       # Since proposer 1 started well before proposer 2, we expect its proposer id to be less
       assert uid1 < uid2
@@ -214,7 +212,7 @@ defmodule PaxosTest do
                  value: ["hamburger"],
                  declines: []
                ]
-             ] = start_async_proposers(nodes, values, delays, false)
+             ] = Helper.start_async_proposers(nodes, values, delays, false)
     end
 
     test "2b - with proposer retries enable to remedy previous decline", %{nodes: nodes} do
@@ -236,7 +234,7 @@ defmodule PaxosTest do
                  value: ["hamburger"],
                  declines: []
                ]
-             ] = start_async_proposers(nodes, values, delays, true)
+             ] = Helper.start_async_proposers(nodes, values, delays, true)
 
       # proposer 1 retries after an initial fail, and hence its round id is after proposer 2
       # even though it initially started first (0)
@@ -263,7 +261,7 @@ defmodule PaxosTest do
                  value: ["hamburger"],
                  declines: []
                ]
-             ] = start_async_proposers(nodes, values, delays, false)
+             ] = Helper.start_async_proposers(nodes, values, delays, false)
 
       # p1 since it sleeps for much greater time starts much later than p2 who is able to set the prepare and commit first
       assert uid1 > uid2
@@ -289,7 +287,7 @@ defmodule PaxosTest do
                  nodes: [:"paxos1@127.0.0.1", :"paxos2@127.0.0.1", :"paxos3@127.0.0.1"],
                  status: :sorry
                ]
-             ] = start_async_proposers(nodes, values, delays, false)
+             ] = Helper.start_async_proposers(nodes, values, delays, false)
     end
 
     test "2d - with proposer retries enabled to remedy previous decline", %{nodes: nodes} do
@@ -311,7 +309,7 @@ defmodule PaxosTest do
                  value: ["pizza"],
                  declines: []
                ]
-             ] = start_async_proposers(nodes, values, delays, true)
+             ] = Helper.start_async_proposers(nodes, values, delays, true)
 
       # the second proposer initially is cut off, but since retries are enabled now, it is able to
       # grab p1's value.  Hence its proposal id value is higher than p1's even though p2 started earlier
